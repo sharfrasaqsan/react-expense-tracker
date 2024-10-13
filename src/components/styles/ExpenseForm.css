@@ -1,0 +1,63 @@
+.expense-form {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.expense-form:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.expense-form input,
+.expense-form select,
+.expense-form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease;
+}
+
+.expense-form input:focus,
+.expense-form select:focus {
+  outline: none;
+  border-color: #61dafb;
+}
+
+.expense-form button {
+  background-color: #282c34;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.expense-form button:hover {
+  background-color: #61dafb;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .expense-form {
+    padding: 20px;
+    box-shadow: none;
+  }
+
+  .expense-form input,
+  .expense-form select,
+  .expense-form button {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+}
