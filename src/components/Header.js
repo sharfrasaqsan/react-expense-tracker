@@ -1,34 +1,39 @@
 import { Link } from "react-router-dom";
 import "../styles/header.css";
 
-const Header = () => (
-  <header className="header">
-    <h1 className="logo">Expense Tracker</h1>
+const Header = () => {
+  return (
+    <header className="header">
+      <>
+        <h1 className="logo">Expense Tracker</h1>
 
-    <nav className="nav">
-      <input
-        type="checkbox"
-        id="menu-toggle"
-        className="menu-toggle"
-        aria-label="Toggle navigation"
-      />
-      <label htmlFor="menu-toggle" className="hamburger">
-        &#9776;
-      </label>
+        <nav className="nav">
+          <input
+            type="checkbox"
+            id="menu-toggle"
+            className="menu-toggle"
+            aria-label="Toggle navigation"
+          />
+          <label htmlFor="menu-toggle" className="hamburger">
+            &#9776;
+          </label>
 
-      <ul className="nav-links">
-        <li>
-          <Link to="/">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/add">Add Transaction</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+          <ul className="nav-links">
+            <li>
+              <Link to="/">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/add">Add Transaction</Link>
+            </li>
+
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
+      </>
+    </header>
+  );
+};
 
 export default Header;

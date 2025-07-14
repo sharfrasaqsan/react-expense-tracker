@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import request from "../api/request";
+import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const AddTransaction = () => {
   const {
@@ -12,24 +14,27 @@ const AddTransaction = () => {
     setTransactionAmount,
   } = useContext(DataContext);
 
+  const navigate = useNavigate();
+
   const addTransaction = async (e) => {
     e.preventDefault();
 
     try {
       const res = await request.post("/transactions", {
-        datetime: Date(),
+        datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         text: transactionText,
-        amount: transactionAmount,
+        amount: Number(transactionAmount),
       });
 
       if (!res.data || res.data.length === 0) {
         return;
       }
 
-      const newTransaction = [...transactions, res.date];
+      const newTransaction = [...transactions, res.data];
       setTransactions(newTransaction);
       setTransactionText("");
       setTransactionAmount("");
+      navigate("/");
     } catch (err) {
       alert(err.message || "Failed to add the transaction!");
     }
