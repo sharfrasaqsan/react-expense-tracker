@@ -1,5 +1,79 @@
-* {
-  padding: 0;
+/* App.css */
+/* ---------- Base Reset ---------- */
+*,
+*::before,
+*::after {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+/* ---------- App Layout ---------- */
+.App {
+  min-height: 100vh; /* take up full viewport height */
+  display: flex;
+  flex-direction: column; /* stack Header → (main) → Footer */
+}
+
+/* Optional: main content wrapper (add later if you need it) */
+.main {
+  flex: 1; /* pushes Footer to the bottom */
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ---------- Utility Buttons ---------- */
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #0ea5e9;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #0369a1;
+}
+
+/* ---------- Inputs ---------- */
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: transparent;
+  outline: 2px solid #0ea5e9;
+}
+
+/* ---------- Simple Responsive Helpers ---------- */
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .flex {
+    flex-direction: column;
+  }
+
+  .main {
+    padding: 1.5rem 1rem;
+  }
 }

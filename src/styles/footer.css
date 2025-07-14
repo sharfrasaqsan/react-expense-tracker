@@ -1,0 +1,18 @@
+.footer {
+  background: #f8fafc;
+  color: #475569;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-top: 1px solid #e2e8f0;
+  margin-top: auto;
+}
+
+/* Optional dark mode */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-color: #1e293b;
+  }
+}
