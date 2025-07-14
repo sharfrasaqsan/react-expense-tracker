@@ -3,7 +3,7 @@ import DataContext from "../context/DataContext";
 
 import { useParams } from "react-router-dom";
 
-const AddTransaction = () => {
+const EditTransaction = () => {
   const {
     transactions,
     editTransactionText,
@@ -11,6 +11,8 @@ const AddTransaction = () => {
     editTransactionAmount,
     setEditTransactionAmount,
     editTransaction,
+    editTransactionType,
+    setEditTransactionType,
   } = useContext(DataContext);
 
   const { id } = useParams();
@@ -20,8 +22,14 @@ const AddTransaction = () => {
     if (transacation) {
       setEditTransactionText(transacation.text);
       setEditTransactionAmount(transacation.amount);
+      setEditTransactionType(transacation.type);
     }
-  }, [transacation, setEditTransactionText, setEditTransactionAmount]);
+  }, [
+    transacation,
+    setEditTransactionText,
+    setEditTransactionAmount,
+    setEditTransactionType,
+  ]);
 
   return (
     <div>
@@ -35,6 +43,28 @@ const AddTransaction = () => {
             onChange={(e) => setEditTransactionText(e.target.value)}
             required
           />
+
+          <div>
+            <label>Income</label>
+            <input
+              type="radio"
+              name="type"
+              value="income"
+              checked={editTransactionType === "income"}
+              onChange={() => setEditTransactionType("income")}
+              tabIndex={0}
+            />
+
+            <label>Expense</label>
+            <input
+              type="radio"
+              name="type"
+              value="expense"
+              checked={editTransactionType === "expense"}
+              onChange={() => setEditTransactionType("expense")}
+              tabIndex={0}
+            />
+          </div>
 
           <label htmlFor="amount">Amount: </label>
           <input
@@ -58,4 +88,4 @@ const AddTransaction = () => {
   );
 };
 
-export default AddTransaction;
+export default EditTransaction;

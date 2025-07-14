@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import DataContext from "../context/DataContext";
 import request from "../api/request";
 import { format } from "date-fns";
@@ -12,6 +12,8 @@ const AddTransaction = () => {
     setTransactionText,
     transactionAmount,
     setTransactionAmount,
+    transactionType,
+    setTransactionType,
   } = useContext(DataContext);
 
   const navigate = useNavigate();
@@ -19,21 +21,25 @@ const AddTransaction = () => {
   const addTransaction = async (e) => {
     e.preventDefault();
 
+    let amountNumber = Math.abs(Number(transactionAmount));
+    if (transactionType === "expense") amountNumber = -amountNumber;
+
     try {
       const res = await request.post("/transactions", {
         datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         text: transactionText,
-        amount: Number(transactionAmount),
+        amount: amountNumber,
+        type: transactionType,
       });
 
       if (!res.data || res.data.length === 0) {
         return;
       }
 
-      const newTransaction = [...transactions, res.data];
-      setTransactions(newTransaction);
+      setTransactions([...transactions, res.data]);
       setTransactionText("");
       setTransactionAmount("");
+      setTransactionType("income");
       navigate("/");
     } catch (err) {
       alert(err.message || "Failed to add the transaction!");
@@ -51,6 +57,29 @@ const AddTransaction = () => {
           onChange={(e) => setTransactionText(e.target.value)}
           required
         />
+
+        <div>
+          <label>Income</label>
+          <input
+            type="radio"
+            name="type"
+            value="income"
+            checked={transactionType === "income"}
+            onChange={() => setTransactionType("income")}
+            tabIndex={0}
+          />
+
+          <label>Expense</label>
+          <input
+            type="radio"
+            name="type"
+            value="expense"
+            checked={transactionType === "expense"}
+            onChange={() => setTransactionType("expense")}
+            tabIndex={0}
+          />
+        </div>
+
         <label htmlFor="amount">Amount: </label>
         <input
           type="number"
