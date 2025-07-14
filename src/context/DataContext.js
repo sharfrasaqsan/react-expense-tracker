@@ -9,6 +9,8 @@ export const DataProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [transactionText, setTransactionText] = useState("");
   const [transactionAmount, setTransactionAmount] = useState("");
+  const [transactionType, setTransactionType] = useState("income");
+  const [editTransactionType, setEditTransactionType] = useState(null);
   const [editTransactionText, setEditTransactionText] = useState("");
   const [editTransactionAmount, setEditTransactionAmount] = useState("");
 
@@ -32,12 +34,16 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   const editTransaction = async (id) => {
+    let amountNumber = Math.abs(Number(editTransactionAmount));
+    if (transactionType === "expense") amountNumber = -amountNumber;
+
     try {
       const res = await request.put(`/transactions/${id}`, {
         id,
         datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         text: editTransactionText,
-        amount: Number(editTransactionAmount),
+        amount: amountNumber,
+        type: editTransactionType,
       });
 
       if (!res.data || res.data.length === 0) {
@@ -50,6 +56,7 @@ export const DataProvider = ({ children }) => {
       setTransactions(updatedTransaction);
       setEditTransactionText("");
       setEditTransactionAmount("");
+      setEditTransactionType("income");
       navigate("/");
     } catch (err) {
       alert(err.message || "Failed to edit the transaction!");
@@ -65,6 +72,10 @@ export const DataProvider = ({ children }) => {
         setTransactionText,
         transactionAmount,
         setTransactionAmount,
+        transactionType,
+        setTransactionType,
+        editTransactionType,
+        setEditTransactionType,
         editTransactionText,
         setEditTransactionText,
         editTransactionAmount,

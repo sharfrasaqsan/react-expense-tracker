@@ -14,7 +14,14 @@ const TransactionItem = ({ transaction, deleteTransaction }) => {
           <td>{rowNo + 1}</td>
           <td>{transaction.datetime}</td>
           <td>{transaction.text}</td>
-          <td>{transaction.amount}</td>
+          <td
+            style={{
+              color: transaction.type === "income" ? "green" : "red",
+            }}
+          >
+            {transaction.type === "income" ? "+" : "-"}$
+            {Math.abs(transaction.amount).toFixed(2)}
+          </td>
           <td>
             <Link to={`/edit/${transaction.id}`}>
               <button>Edit</button>

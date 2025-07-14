@@ -1,16 +1,25 @@
 {
   "transactions": [
     {
-      "id": "d5fe",
-      "datetime": "2025-07-14 16:37:38",
+      "id": "d3be",
+      "datetime": "2025-07-14 20:59:47",
       "text": "Salary",
-      "amount": 50000
+      "amount": 100000,
+      "type": "income"
     },
     {
-      "id": "1300",
-      "datetime": "2025-07-14 16:38:00",
-      "text": "Home appliense",
-      "amount": -1000
+      "id": "3077",
+      "datetime": "2025-07-14 21:39:33",
+      "text": "Travel",
+      "amount": 10000,
+      "type": "expense"
+    },
+    {
+      "id": "1798",
+      "datetime": "2025-07-14 22:03:04",
+      "text": "Business",
+      "amount": 1000,
+      "type": "income"
     }
   ]
 }
