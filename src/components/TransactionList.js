@@ -1,9 +1,20 @@
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import TransactionItem from "./TransactionItem";
+import request from "../api/request";
 
 const TransactionList = () => {
-  const { transactions } = useContext(DataContext);
+  const { transactions, setTransactions } = useContext(DataContext);
+
+  const deleteTransaction = async (id) => {
+    try {
+      await request.delete(`/transactions/${id}`);
+      const res = transactions.filter((i) => i.id !== id);
+      setTransactions(res);
+    } catch (err) {
+      alert(err.message || "Failed to delete the trasaction!");
+    }
+  };
 
   return (
     <div>
@@ -21,7 +32,11 @@ const TransactionList = () => {
 
         <tbody>
           {transactions.map((i) => (
-            <TransactionItem key={i.id} transaction={i} />
+            <TransactionItem
+              key={i.id}
+              transaction={i}
+              deleteTransaction={deleteTransaction}
+            />
           ))}
         </tbody>
       </table>
