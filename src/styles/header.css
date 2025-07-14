@@ -79,11 +79,13 @@
     gap: 1.25rem;
     background: transparent;
   }
-
+  
   .nav-links li {
     padding: 0;
   }
+}
 
+@media (max-width: 480px) {
   .nav-links {
     left: -100px;
     width: 150px;
