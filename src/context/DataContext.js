@@ -1,7 +1,7 @@
-// src/context/DataContext.js
 import { createContext, useEffect, useState } from "react";
 import request from "../api/request";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 const DataContext = createContext();
 
@@ -35,7 +35,7 @@ export const DataProvider = ({ children }) => {
     try {
       const res = await request.put(`/transactions/${id}`, {
         id,
-        datetime: new Date(),
+        datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         text: editTransactionText,
         amount: Number(editTransactionAmount),
       });

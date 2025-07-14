@@ -26,25 +26,34 @@ const AddTransaction = () => {
   return (
     <div>
       <h2>Edit Transaction</h2>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <label htmlFor="text">Decription: </label>
-        <input
-          type="text"
-          value={editTransactionText}
-          onChange={(e) => setEditTransactionText(e.target.value)}
-          required
-        />
-        <label htmlFor="amount">Amount: </label>
-        <input
-          type="number"
-          value={editTransactionAmount}
-          onChange={(e) => setEditTransactionAmount(e.target.value)}
-          required
-        />
-        <button type="submit" onClick={() => editTransaction(transacation.id)}>
-          Update
-        </button>
-      </form>
+      {transacation ? (
+        <form onSubmit={(e) => e.preventDefault()}>
+          <label htmlFor="text">Decription: </label>
+          <input
+            type="text"
+            value={editTransactionText}
+            onChange={(e) => setEditTransactionText(e.target.value)}
+            required
+          />
+
+          <label htmlFor="amount">Amount: </label>
+          <input
+            type="number"
+            value={editTransactionAmount}
+            onChange={(e) => setEditTransactionAmount(e.target.value)}
+            required
+          />
+
+          <button
+            type="submit"
+            onClick={() => editTransaction(transacation.id)}
+          >
+            Update
+          </button>
+        </form>
+      ) : (
+        <p>No transaction here!</p>
+      )}
     </div>
   );
 };

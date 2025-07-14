@@ -1,28 +1,16 @@
 {
   "transactions": [
     {
-      "id": "1",
-      "datetime": "2025-07-14T10:34:09.278Z",
-      "text": "Flower",
-      "amount": -20
-    },
-    {
-      "id": "2",
-      "datetime": "2025-07-14T10:36:08.868Z",
+      "id": "d5fe",
+      "datetime": "2025-07-14 16:37:38",
       "text": "Salary",
       "amount": 50000
     },
     {
-      "id": "3",
-      "datetime": "2025.07.04 01:30:45 PM",
-      "text": "Book",
-      "amount": -15
-    },
-    {
-      "id": "4",
-      "datetime": "2025.07.05 03:45:00 PM",
-      "text": "Groceries",
-      "amount": -50
+      "id": "1300",
+      "datetime": "2025-07-14 16:38:00",
+      "text": "Home appliense",
+      "amount": -1000
     }
   ]
 }
