@@ -1,13 +1,6 @@
 {
   "transactions": [
     {
-      "id": "d3be",
-      "datetime": "2025-07-14 20:59:47",
-      "text": "Salary",
-      "amount": 100000,
-      "type": "income"
-    },
-    {
       "id": "3077",
       "datetime": "2025-07-14 22:07:21",
       "text": "Travel",
