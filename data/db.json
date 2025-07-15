@@ -27,6 +27,13 @@
       "text": "Food",
       "amount": -15000,
       "type": "expense"
+    },
+    {
+      "id": "7173",
+      "datetime": "2025-07-15 11:57:30",
+      "text": "Salary",
+      "amount": 20000,
+      "type": "income"
     }
   ]
 }

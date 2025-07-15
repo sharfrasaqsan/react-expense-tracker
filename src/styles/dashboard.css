@@ -1,0 +1,23 @@
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-right {
+  width: 35%;
+}
+
+.dashboard-left {
+  width: 65%;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .dashboard-right,
+  .dashboard-left {
+    width: 100%;
+  }
+}
