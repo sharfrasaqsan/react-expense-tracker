@@ -20,6 +20,7 @@ const TransactionItem = ({ transaction, deleteTransaction }) => {
           <td
             style={{
               color: transaction.type === "income" ? "green" : "red",
+              textAlign: "right",
             }}
           >
             {transaction.type === "income" ? "+" : "-"}$
