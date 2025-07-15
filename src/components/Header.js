@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <header className="header">
       <>
-        <h1 className="logo">Expense Tracker</h1>
+        <Link to="/" className="logo-link">
+          <h1 className="logo">Expense Tracker</h1>
+        </Link>
 
         <nav className="nav">
           <input

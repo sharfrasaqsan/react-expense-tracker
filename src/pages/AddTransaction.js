@@ -3,6 +3,7 @@ import DataContext from "../context/DataContext";
 import request from "../api/request";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import "../styles/addtransaction.css";
 
 const AddTransaction = () => {
   const {
@@ -47,9 +48,9 @@ const AddTransaction = () => {
   };
 
   return (
-    <div>
-      <h2>Add Transaction</h2>
-      <form onSubmit={addTransaction}>
+    <div className="form-card">
+      <h2 className="form-title">Add Transaction</h2>
+      <form onSubmit={addTransaction} className="form">
         <label htmlFor="text">Decription: </label>
         <input
           type="text"
@@ -58,7 +59,7 @@ const AddTransaction = () => {
           required
         />
 
-        <div>
+        <div className="radio-group">
           <label>Income</label>
           <input
             type="radio"
@@ -87,7 +88,9 @@ const AddTransaction = () => {
           onChange={(e) => setTransactionAmount(e.target.value)}
           required
         />
-        <button type="submit">Add</button>
+        <button type="submit" className="submit-btn">
+          Add
+        </button>
       </form>
     </div>
   );

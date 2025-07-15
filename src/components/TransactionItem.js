@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import DataContext from "../context/DataContext";
+import { FaRegEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import "../styles/transactionlist.css";
 
 const TransactionItem = ({ transaction, deleteTransaction }) => {
   const { transactions } = useContext(DataContext);
@@ -24,13 +27,20 @@ const TransactionItem = ({ transaction, deleteTransaction }) => {
           </td>
           <td>
             <Link to={`/edit/${transaction.id}`}>
-              <button>Edit</button>
+              <FaRegEdit
+                role="button"
+                title="Edit Transaction"
+                className="edit-icon"
+              />
             </Link>
           </td>
           <td>
-            <button onClick={() => deleteTransaction(transaction.id)}>
-              Delete
-            </button>
+            <RiDeleteBin6Line
+              onClick={() => deleteTransaction(transaction.id)}
+              className="delete-icon"
+              role="button"
+              title="Delete Transaction"
+            />
           </td>
         </>
       ) : (

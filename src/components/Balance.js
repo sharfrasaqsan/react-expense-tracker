@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
+import "../styles/balance.css";
 
 const Balance = () => {
   const { transactions } = useContext(DataContext);
@@ -19,11 +20,22 @@ const Balance = () => {
   //     .reduce((acc, value) => acc + value, 0);
 
   return (
-    <div>
-      <h3>Balance Summary</h3>
-      <p>Total Balance = ${balance.toFixed(2)}</p>
-      <p>Total Income = +${income.toFixed(2)}</p>
-      <p>Total Expenses = -${expenses.toFixed(2)}</p>
+    <div className="balance-card">
+      <h2 className="balance-title">Balance Summary</h2>
+      <div className="balance-items">
+        <div className="balance-item total">
+          <span>Total Balance</span>
+          <span>${balance.toFixed(2)}</span>
+        </div>
+        <div className="balance-item income">
+          <span>Total Income</span>
+          <span>+${income.toFixed(2)}</span>
+        </div>
+        <div className="balance-item expenses">
+          <span>Total Expenses</span>
+          <span>-${expenses.toFixed(2)}</span>
+        </div>
+      </div>
     </div>
   );
 };
