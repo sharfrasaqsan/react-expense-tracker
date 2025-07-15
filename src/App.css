@@ -16,7 +16,7 @@ body {
 
 /* ---------- App Layout ---------- */
 .App {
-  min-height: 100vh; /* take up full viewport height */
+  min-height: 100vh;
   display: flex;
   flex-direction: column; /* stack Header → (main) → Footer */
 }
