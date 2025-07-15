@@ -22,10 +22,17 @@
       "type": "income"
     },
     {
-      "id": "c7f0",
-      "datetime": "2025-07-15 10:57:00",
-      "text": "Food",
-      "amount": -15000,
+      "id": "cb41",
+      "datetime": "2025-07-15 11:21:40",
+      "text": "Phone",
+      "amount": 15000,
+      "type": "expense"
+    },
+    {
+      "id": "71b8",
+      "datetime": "2025-07-15 11:30:00",
+      "text": "Travel",
+      "amount": 2500,
       "type": "expense"
     }
   ]

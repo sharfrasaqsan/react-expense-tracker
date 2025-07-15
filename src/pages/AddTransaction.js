@@ -22,14 +22,11 @@ const AddTransaction = () => {
   const addTransaction = async (e) => {
     e.preventDefault();
 
-    let amountNumber = Math.abs(Number(transactionAmount));
-    if (transactionType === "expense") amountNumber = -amountNumber;
-
     try {
       const res = await request.post("/transactions", {
         datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         text: transactionText,
-        amount: amountNumber,
+        amount: Math.abs(Number(transactionAmount)),
         type: transactionType,
       });
 
