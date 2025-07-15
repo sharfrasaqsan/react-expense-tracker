@@ -13,6 +13,8 @@ export const DataProvider = ({ children }) => {
   const [editTransactionType, setEditTransactionType] = useState(null);
   const [editTransactionText, setEditTransactionText] = useState("");
   const [editTransactionAmount, setEditTransactionAmount] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchedTransactions, setSearchedTransactions] = useState([]);
 
   const navigate = useNavigate();
 
@@ -60,6 +62,19 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    const searchedTransaction = transactions.filter((i) =>
+      i.text.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (searchQuery === "") {
+      setSearchedTransactions(transactions);
+      return;
+    }
+
+    setSearchedTransactions(searchedTransaction);
+  }, [searchQuery, transactions]);
+
   return (
     <DataContext.Provider
       value={{
@@ -78,6 +93,11 @@ export const DataProvider = ({ children }) => {
         editTransactionAmount,
         setEditTransactionAmount,
         editTransaction,
+        searchQuery,
+        setSearchQuery,
+        searchedTransactions,
+        setSearchedTransactions,
+        navigate,
       }}
     >
       {children}

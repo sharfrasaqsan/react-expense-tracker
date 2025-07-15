@@ -2,7 +2,6 @@ import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import request from "../api/request";
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
 import "../styles/addtransaction.css";
 
 const AddTransaction = () => {
@@ -15,9 +14,8 @@ const AddTransaction = () => {
     setTransactionAmount,
     transactionType,
     setTransactionType,
+    navigate,
   } = useContext(DataContext);
-
-  const navigate = useNavigate();
 
   const addTransaction = async (e) => {
     e.preventDefault();
