@@ -13,11 +13,7 @@ const Balance = () => {
     .filter((i) => i.type === "expense")
     .reduce((acc, value) => acc + value.amount, 0);
 
-  const balance = income + expenses;
-  // Short method
-  //   const totalExpenses = amounts
-  //     .filter((i) => i < 0)
-  //     .reduce((acc, value) => acc + value, 0);
+  const balance = income - expenses;
 
   return (
     <div className="balance-card">

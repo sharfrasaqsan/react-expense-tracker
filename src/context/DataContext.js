@@ -34,15 +34,12 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   const editTransaction = async (id) => {
-    let amountNumber = Math.abs(Number(editTransactionAmount));
-    if (transactionType === "expense") amountNumber = -amountNumber;
-
     try {
       const res = await request.put(`/transactions/${id}`, {
         id,
         datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         text: editTransactionText,
-        amount: amountNumber,
+        amount: Math.abs(Number(editTransactionAmount)),
         type: editTransactionType,
       });
 
