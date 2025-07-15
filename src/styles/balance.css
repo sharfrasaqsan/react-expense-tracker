@@ -9,7 +9,7 @@
 }
 
 .balance-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
   text-align: center;
@@ -25,7 +25,7 @@
 .balance-item {
   display: flex;
   justify-content: space-between;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   background-color: #fff;
