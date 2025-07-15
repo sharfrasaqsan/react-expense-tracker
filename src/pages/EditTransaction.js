@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import DataContext from "../context/DataContext";
-
+import "../styles/addtransaction.css";
 import { useParams } from "react-router-dom";
 
 const EditTransaction = () => {
@@ -32,10 +32,10 @@ const EditTransaction = () => {
   ]);
 
   return (
-    <div>
-      <h2>Edit Transaction</h2>
+    <div className="form-card">
+      <h2 className="form-title">Edit Transaction</h2>
       {transacation ? (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()} className="form">
           <label htmlFor="text">Decription: </label>
           <input
             type="text"
@@ -44,7 +44,7 @@ const EditTransaction = () => {
             required
           />
 
-          <div>
+          <div className="radio-group">
             <label>Income</label>
             <input
               type="radio"
@@ -77,6 +77,7 @@ const EditTransaction = () => {
           <button
             type="submit"
             onClick={() => editTransaction(transacation.id)}
+            className="submit-btn"
           >
             Update
           </button>

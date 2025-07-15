@@ -9,10 +9,24 @@
     },
     {
       "id": "1798",
-      "datetime": "2025-07-14 22:03:04",
+      "datetime": "2025-07-15 10:57:15",
       "text": "Business",
-      "amount": 1000,
+      "amount": 10000,
       "type": "income"
+    },
+    {
+      "id": "2920",
+      "datetime": "2025-07-15 10:56:38",
+      "text": "Salary",
+      "amount": 50000,
+      "type": "income"
+    },
+    {
+      "id": "c7f0",
+      "datetime": "2025-07-15 10:57:00",
+      "text": "Food",
+      "amount": -15000,
+      "type": "expense"
     }
   ]
 }
