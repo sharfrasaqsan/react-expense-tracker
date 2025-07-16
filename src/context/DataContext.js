@@ -17,6 +17,8 @@ export const DataProvider = ({ children }) => {
   const [searchedTransactions, setSearchedTransactions] = useState([]);
   const [filters, setFilters] = useState("all");
   const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -129,6 +131,11 @@ export const DataProvider = ({ children }) => {
         setSearchedTransactions,
         setFilters,
         filteredTransactions,
+        filters,
+        email,
+        setEmail,
+        password,
+        setPassword,
       }}
     >
       {children}

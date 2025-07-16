@@ -24,12 +24,21 @@ const Header = () => {
             <li>
               <Link to="/">Dashboard</Link>
             </li>
+
             <li>
               <Link to="/add">Add Transaction</Link>
             </li>
 
             <li>
               <Link to="/about">About</Link>
+            </li>
+
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+
+            <li>
+              <Link to="/register">Register</Link>
             </li>
           </ul>
         </nav>

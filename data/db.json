@@ -16,23 +16,30 @@
     },
     {
       "id": "444e",
-      "datetime": "2025-07-15 13:51:44",
+      "datetime": "2025-07-16 12:19:08",
       "text": "Business profit",
-      "amount": 150000,
+      "amount": 60000,
       "type": "income"
     },
     {
       "id": "aac2",
-      "datetime": "2025-07-16 11:41:50",
+      "datetime": "2025-07-16 12:16:29",
       "text": "Home expense",
-      "amount": 15000,
+      "amount": 16000,
       "type": "expense"
     },
     {
       "id": "1aee",
-      "datetime": "2025-07-16 11:42:39",
+      "datetime": "2025-07-16 12:16:18",
       "text": "Home appilence",
-      "amount": 25000,
+      "amount": 23000,
+      "type": "expense"
+    },
+    {
+      "id": "e514",
+      "datetime": "2025-07-16 12:18:55",
+      "text": "Food",
+      "amount": 30000,
       "type": "expense"
     }
   ]
