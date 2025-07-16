@@ -2,19 +2,31 @@ import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import TransactionItem from "./TransactionItem";
 import Search from "./Search";
-import request from "../api/request";
 import "../styles/transactionlist.css";
 import Filter from "./Filter";
 import ExportCSV from "./ExportCSV";
 import Logout from "./Logout";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 const TransactionList = () => {
   const { transactions, setTransactions, searchQuery, filteredTransactions } =
     useContext(DataContext);
 
+  // delete transaction
+  // const deleteTransaction = async (id) => {
+  //   try {
+  //     await request.delete(`/transactions/${id}`);
+  //     const res = transactions.filter((i) => i.id !== id);
+  //     setTransactions(res);
+  //   } catch (err) {
+  //     alert(err.message || "Failed to delete the trasaction!");
+  //   }
+  // };
+
   const deleteTransaction = async (id) => {
     try {
-      await request.delete(`/transactions/${id}`);
+      await deleteDoc(doc(db, "transactions", id));
       const res = transactions.filter((i) => i.id !== id);
       setTransactions(res);
     } catch (err) {

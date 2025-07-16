@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import "../styles/header.css";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
+  const { user } = useAuth();
+
   return (
     <header className="header">
       <>
-        <Link to="/" className="logo-link">
+        <Link to="/" className="logo-link" style={{ outline: "none" }}>
           <h1 className="logo">Expense Tracker</h1>
         </Link>
 
@@ -33,9 +36,11 @@ const Header = () => {
               <Link to="/about">About</Link>
             </li>
 
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            {!user && (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            )}
 
             <li>
               <Link to="/register">Register</Link>

@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
-import request from "../api/request";
 import { format } from "date-fns";
 import "../styles/addtransaction.css";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 const AddTransaction = () => {
   const {
@@ -17,22 +18,45 @@ const AddTransaction = () => {
     navigate,
   } = useContext(DataContext);
 
+  // const addTransaction = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await request.post("/transactions", {
+  //       datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+  //       text: transactionText,
+  //       amount: Math.abs(Number(transactionAmount)),
+  //       type: transactionType,
+  //     });
+
+  //     if (!res.data || res.data.length === 0) {
+  //       return;
+  //     }
+
+  //     setTransactions([...transactions, res.data]);
+  //     setTransactionText("");
+  //     setTransactionAmount("");
+  //     setTransactionType("income");
+  //     navigate("/");
+  //   } catch (err) {
+  //     alert(err.message || "Failed to add the transaction!");
+  //   }
+  // };
+
   const addTransaction = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await request.post("/transactions", {
+      const newTransaction = {
         datetime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         text: transactionText,
         amount: Math.abs(Number(transactionAmount)),
         type: transactionType,
-      });
+      };
 
-      if (!res.data || res.data.length === 0) {
-        return;
-      }
+      const res = await addDoc(collection(db, "transactions"), newTransaction);
 
-      setTransactions([...transactions, res.data]);
+      setTransactions([...transactions, { id: res.id, ...newTransaction }]);
       setTransactionText("");
       setTransactionAmount("");
       setTransactionType("income");
