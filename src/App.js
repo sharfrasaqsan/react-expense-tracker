@@ -9,6 +9,7 @@ import EditTransaction from "./pages/EditTransaction";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -16,9 +17,30 @@ function App() {
       <Header />
       <div className="main">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/add" element={<AddTransaction />} />
-          <Route path="/edit/:id" element={<EditTransaction />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add"
+            element={
+              <PrivateRoute>
+                <AddTransaction />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditTransaction />
+              </PrivateRoute>
+            }
+          />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
