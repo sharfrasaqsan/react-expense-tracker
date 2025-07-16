@@ -2,6 +2,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
+import "../styles/login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { email, setEmail, password, setPassword, navigate } =
@@ -19,8 +21,9 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleLogin} className="login-form">
       <h2>Login</h2>
+      <label htmlFor="email">Email: </label>
       <input
         type="email"
         placeholder="Email"
@@ -28,6 +31,7 @@ const Login = () => {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
+      <label htmlFor="password">Password: </label>
       <input
         type="password"
         placeholder="Password"
@@ -36,6 +40,10 @@ const Login = () => {
         required
       />
       <button type="submit">Login</button>
+
+      <p>
+        Don't have an account? <Link to="/register">Register</Link>
+      </p>
     </form>
   );
 };
