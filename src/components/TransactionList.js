@@ -5,6 +5,7 @@ import Search from "./Search";
 import request from "../api/request";
 import "../styles/transactionlist.css";
 import Filter from "./Filter";
+import ExportCSV from "./ExportCSV";
 
 const TransactionList = () => {
   const { transactions, setTransactions, searchQuery, filteredTransactions } =
@@ -27,7 +28,10 @@ const TransactionList = () => {
     <div className="transaction-list-container">
       <h2>Transaction History</h2>
       <Search />
-      <Filter />
+      <div className="controls">
+        <Filter />
+        <ExportCSV />
+      </div>
 
       <div className="table-container">
         <table className="transaction-table">
