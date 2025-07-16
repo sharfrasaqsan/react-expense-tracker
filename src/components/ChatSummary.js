@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import DataContext from "../context/DataContext";
 
-const COLORS = ["#22c55e", "#ef4444"]; // income: green, expense: red
+const COLORS = ["#3b82f6", "#ef4444"]; // savings: blue, expense: red
 
 const ChartSummary = () => {
   const { transactions } = useContext(DataContext);
@@ -22,15 +22,17 @@ const ChartSummary = () => {
     .filter((t) => t.type === "expense")
     .reduce((sum, t) => sum + t.amount, 0);
 
+  const savings = income - expense;
+
   const data = [
-    { name: "Income", value: income },
+    { name: "Savings", value: savings > 0 ? savings : 0 },
     { name: "Expense", value: expense },
   ];
 
   return (
     <div style={{ width: "100%", maxWidth: "500px", margin: "2rem auto" }}>
       <h3 style={{ textAlign: "center", marginBottom: "1rem" }}>
-        Income vs Expense
+        Total Income Breakdown
       </h3>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
@@ -41,7 +43,6 @@ const ChartSummary = () => {
             cx="50%"
             cy="50%"
             outerRadius={100}
-            fill="#8884d8"
             label
           >
             {data.map((_, index) => (
