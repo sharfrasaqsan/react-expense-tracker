@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import "../styles/balance.css";
+import ChatSummary from "./ChatSummary";
 
 const Balance = () => {
   const { transactions } = useContext(DataContext);
@@ -32,6 +33,7 @@ const Balance = () => {
           <span>-${expenses.toFixed(2)}</span>
         </div>
       </div>
+      <ChatSummary />
     </div>
   );
 };

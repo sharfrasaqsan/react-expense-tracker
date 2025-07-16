@@ -15,25 +15,25 @@
       "type": "income"
     },
     {
-      "id": "cb41",
-      "datetime": "2025-07-15 11:21:40",
-      "text": "Phone",
-      "amount": 15000,
-      "type": "expense"
-    },
-    {
-      "id": "71b8",
-      "datetime": "2025-07-15 11:30:00",
-      "text": "Travel",
-      "amount": 2500,
-      "type": "expense"
-    },
-    {
       "id": "444e",
       "datetime": "2025-07-15 13:51:44",
       "text": "Business profit",
       "amount": 150000,
       "type": "income"
+    },
+    {
+      "id": "aac2",
+      "datetime": "2025-07-16 11:41:50",
+      "text": "Home expense",
+      "amount": 15000,
+      "type": "expense"
+    },
+    {
+      "id": "1aee",
+      "datetime": "2025-07-16 11:42:39",
+      "text": "Home appilence",
+      "amount": 25000,
+      "type": "expense"
     }
   ]
 }
