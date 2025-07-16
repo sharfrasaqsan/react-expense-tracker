@@ -22,6 +22,9 @@ const Register = () => {
     if (!userName || !email || !password)
       return alert("Please fill in all fields!");
 
+    if (password.length < 6)
+      return alert("Password must be at least 6 characters!");
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
