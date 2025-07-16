@@ -11,6 +11,11 @@
   text-align: center;
 }
 
+.transaction-list-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .table-container {
   overflow-x: auto;
 }
