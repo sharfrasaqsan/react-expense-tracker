@@ -4,9 +4,10 @@ import TransactionItem from "./TransactionItem";
 import Search from "./Search";
 import request from "../api/request";
 import "../styles/transactionlist.css";
+import Filter from "./Filter";
 
 const TransactionList = () => {
-  const { transactions, setTransactions, searchedTransactions, searchQuery } =
+  const { transactions, setTransactions, searchQuery, filteredTransactions } =
     useContext(DataContext);
 
   const deleteTransaction = async (id) => {
@@ -26,6 +27,7 @@ const TransactionList = () => {
     <div className="transaction-list-container">
       <h2>Transaction History</h2>
       <Search />
+      <Filter />
 
       <div className="table-container">
         <table className="transaction-table">
@@ -40,7 +42,8 @@ const TransactionList = () => {
           </thead>
 
           <tbody>
-            {searchedTransactions.map((i) => (
+            {filteredTransactions.map((i) => (
+              // before filteredTransactions it was searchedTransactions now it filters the date based on filteredTransactions
               // before seachQuery, it was transactions.map() now it filters transactions based on searchQuery
               <TransactionItem
                 key={i.id}
@@ -51,7 +54,7 @@ const TransactionList = () => {
           </tbody>
         </table>
 
-        {transactions.length > 0 && searchedTransactions.length === 0 && (
+        {filteredTransactions.length === 0 && (
           <p className="info-msg">
             No results found for{" "}
             <span className="highlight">{searchQuery}</span>

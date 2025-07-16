@@ -15,9 +15,12 @@ export const DataProvider = ({ children }) => {
   const [editTransactionAmount, setEditTransactionAmount] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedTransactions, setSearchedTransactions] = useState([]);
+  const [filters, setFilters] = useState("all");
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
 
   const navigate = useNavigate();
 
+  // Fetch transactions
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
@@ -35,6 +38,7 @@ export const DataProvider = ({ children }) => {
     fetchTransaction();
   }, []);
 
+  // Edit transaction
   const editTransaction = async (id) => {
     try {
       const res = await request.put(`/transactions/${id}`, {
@@ -62,8 +66,9 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  // Search transactions
   useEffect(() => {
-    const searchedTransaction = transactions.filter((i) =>
+    const searched = transactions.filter((i) =>
       i.text.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -72,8 +77,32 @@ export const DataProvider = ({ children }) => {
       return;
     }
 
-    setSearchedTransactions(searchedTransaction);
+    setSearchedTransactions(searched);
   }, [searchQuery, transactions]);
+
+  // Filter transactions
+
+  useEffect(() => {
+    const filterTransactions = () => {
+      if (filters === "all") {
+        setFilteredTransactions(searchedTransactions);
+      }
+
+      if (filters === "income") {
+        setFilteredTransactions(
+          searchedTransactions.filter((i) => i.type === "income")
+        );
+      }
+
+      if (filters === "expense") {
+        setFilteredTransactions(
+          searchedTransactions.filter((i) => i.type === "expense")
+        );
+      }
+    };
+
+    filterTransactions();
+  }, [filters, searchedTransactions]);
 
   return (
     <DataContext.Provider
@@ -93,11 +122,13 @@ export const DataProvider = ({ children }) => {
         editTransactionAmount,
         setEditTransactionAmount,
         editTransaction,
+        navigate,
         searchQuery,
         setSearchQuery,
         searchedTransactions,
         setSearchedTransactions,
-        navigate,
+        setFilters,
+        filteredTransactions,
       }}
     >
       {children}
