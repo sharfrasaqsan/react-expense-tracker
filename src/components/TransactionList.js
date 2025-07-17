@@ -10,8 +10,13 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 const TransactionList = () => {
-  const { transactions, setTransactions, searchQuery, filteredTransactions } =
-    useContext(DataContext);
+  const {
+    transactions,
+    setTransactions,
+    searchQuery,
+    filteredTransactions,
+    loading,
+  } = useContext(DataContext);
 
   // delete transaction
   // const deleteTransaction = async (id) => {
@@ -33,9 +38,6 @@ const TransactionList = () => {
       alert(err.message || "Failed to delete the trasaction!");
     }
   };
-
-  if (transactions.length === 0)
-    return <p className="info-msg">No transaction found</p>;
 
   return (
     <div className="transaction-list-container">
@@ -62,24 +64,42 @@ const TransactionList = () => {
           </thead>
 
           <tbody>
-            {filteredTransactions.map((i) => (
-              // before filteredTransactions it was searchedTransactions now it filters the date based on filteredTransactions
-              // before seachQuery, it was transactions.map() now it filters transactions based on searchQuery
-              <TransactionItem
-                key={i.id}
-                transaction={i}
-                deleteTransaction={deleteTransaction}
-              />
-            ))}
+            {loading && (
+              <tr>
+                <td
+                  colSpan="6"
+                  style={{ textAlign: "center", padding: "1rem" }}
+                >
+                  Loading transactions...
+                </td>
+              </tr>
+            )}
+
+            {!loading && filteredTransactions.length === 0 && (
+              <tr>
+                <td
+                  colSpan="6"
+                  style={{ textAlign: "center", padding: "1rem" }}
+                >
+                  No results found for{" "}
+                  <span className="highlight">
+                    {searchQuery || "current filter"}
+                  </span>
+                </td>
+              </tr>
+            )}
+
+            {!loading &&
+              filteredTransactions.length > 0 &&
+              filteredTransactions.map((i) => (
+                <TransactionItem
+                  key={i.id}
+                  transaction={i}
+                  deleteTransaction={deleteTransaction}
+                />
+              ))}
           </tbody>
         </table>
-
-        {filteredTransactions.length === 0 && (
-          <p className="info-msg">
-            No results found for{" "}
-            <span className="highlight">{searchQuery}</span>
-          </p>
-        )}
       </div>
     </div>
   );
