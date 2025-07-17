@@ -1,12 +1,22 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { useAuth } from "./AuthContext";
 
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+  const { user } = useAuth();
+
   const [transactions, setTransactions] = useState([]);
   const [transactionText, setTransactionText] = useState("");
   const [transactionAmount, setTransactionAmount] = useState("");
@@ -21,6 +31,7 @@ export const DataProvider = ({ children }) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -44,9 +55,18 @@ export const DataProvider = ({ children }) => {
 
   // Fetch transactions using Firebase
   useEffect(() => {
+    if (!user) {
+      setLoading(true);
+      return;
+    }
     const fetchTransaction = async () => {
       try {
-        const res = await getDocs(collection(db, "transactions")); // Hey, give me all documents from the transactions collection
+        const uniqueUserData = query(
+          collection(db, "transactions"),
+          where("uid", "==", user.uid) // Filter by user with uid
+        );
+
+        const res = await getDocs(uniqueUserData); // Hey, give me all documents from the transactions collection
         const data = res.docs.map((i) => ({
           // Take every item in this list and turn it into a new format.
           id: i.id,
@@ -54,18 +74,19 @@ export const DataProvider = ({ children }) => {
         }));
 
         if (!data || data.length === 0) {
-          alert("No data to fetch!");
           return;
         }
 
         setTransactions(data);
       } catch (err) {
         alert(err.message || "Failed to fetch data!");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchTransaction();
-  }, []);
+  }, [user]);
 
   // Edit transaction
   // const editTransaction = async (id) => {
@@ -187,6 +208,7 @@ export const DataProvider = ({ children }) => {
         setEmail,
         password,
         setPassword,
+        loading,
       }}
     >
       {children}

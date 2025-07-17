@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import "../styles/addtransaction.css";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { useAuth } from "../context/AuthContext";
 
 const AddTransaction = () => {
   const {
@@ -17,6 +18,8 @@ const AddTransaction = () => {
     setTransactionType,
     navigate,
   } = useContext(DataContext);
+
+  const { user } = useAuth();
 
   // const addTransaction = async (e) => {
   //   e.preventDefault();
@@ -52,6 +55,7 @@ const AddTransaction = () => {
         text: transactionText,
         amount: Math.abs(Number(transactionAmount)),
         type: transactionType,
+        uid: user.uid,
       };
 
       const res = await addDoc(collection(db, "transactions"), newTransaction);
