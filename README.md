@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# React Expense Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Live Demo](https://img.icons8.com/?size=100&id=UyjPlooIqDBC&format=png&color=000000)](https://sharfrasaqsan.vercel.app/) 
 
-## Available Scripts
+This is a simple and effective expense tracker application built with React, designed to help you manage your personal finances by tracking income and expenses. It utilizes Firebase for authentication and data storage, providing a secure and reliable experience.
 
-In the project directory, you can run:
+## Features and Functionality
 
-### `npm start`
+*   **Dashboard:** Provides an overview of your balance, income, and expenses.
+*   **Transaction Management:**
+    *   Add new income and expense transactions with descriptions and amounts.
+    *   Edit existing transactions to correct or update information.
+    *   Delete transactions to remove them from the record.
+*   **Filtering:** Filter transactions by type (income, expense, or all).  The filter functionality is implemented in `src/components/Filter.js`.
+*   **Searching:** Search transactions by description. Implemented in `src/components/Search.js`.
+*   **Balance Summary:** Visual representation of your financial status, including total balance, total income, and total expenses.  The balance summary is implemented in `src/components/Balance.js`.
+*   **Chart Summary:** Display income breakdown using a pie chart. Implemented in `src/components/ChatSummary.js`.
+*   **CSV Export:** Export transaction data to a CSV file for further analysis or record-keeping. The export functionality is implemented in `src/components/ExportCSV.js`.
+*   **Authentication:** Secure user authentication with Firebase.  Users can register, login, and logout.
+*   **Private Routes:**  Authenticated users only can access the dashboard, add and edit transactions.
+*   **Responsive Design:** The app is designed to be responsive and usable on various devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technology Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*   **React:** A JavaScript library for building user interfaces.
+*   **React Router DOM:** For handling navigation between different pages.
+*   **Firebase:** For authentication and cloud database (Firestore).
+*   **Date-fns:** To format the date.
+*   **Recharts:** To display charts.
+*   **Context API:** For global state management.
+*   **CSS:** For styling.
+*   **HTML:** For structuring the app content.
 
-### `npm test`
+## Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before you begin, ensure you have the following installed:
 
-### `npm run build`
+*   **Node.js:**  (version 14 or higher is recommended).
+*   **npm** (Node Package Manager) or **yarn**.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation Instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  **Clone the repository:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    git clone https://github.com/sharfrasaqsan/react-expense-tracker.git
+    cd react-expense-tracker
+    ```
 
-### `npm run eject`
+2.  **Install dependencies:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    npm install  # or yarn install
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3.  **Firebase Configuration:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    *   Create a new project in the [Firebase Console](https://console.firebase.google.com/).
+    *   Configure a web app within your Firebase project.
+    *   Obtain your Firebase configuration object.
+    *   Replace the placeholder values in `src/firebase/firebase.js` with your actual Firebase configuration:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+        ```javascript
+        // src/firebase/firebase.js
+        import { initializeApp } from "firebase/app";
+        import { getFirestore } from "firebase/firestore";
+        import { getAuth } from "firebase/auth";
 
-## Learn More
+        const firebaseConfig = {
+          apiKey: "YOUR_API_KEY",
+          authDomain: "YOUR_AUTH_DOMAIN",
+          projectId: "YOUR_PROJECT_ID",
+          storageBucket: "YOUR_STORAGE_BUCKET",
+          messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+          appId: "YOUR_APP_ID",
+          measurementId: "YOUR_MEASUREMENT_ID"
+        };
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+        // Export initialize Firebase
+        export const auth = getAuth(app);
+        export const db = getFirestore(app);
+        ```
 
-### Code Splitting
+4.  **Environment Variables:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    *   This project requires no explicit `.env` file configurations, as Firebase keys are directly integrated.
+    *   It is crucial to properly configure the Firebase settings directly within the `src/firebase/firebase.js` file.
 
-### Analyzing the Bundle Size
+## Usage Guide
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1.  **Start the development server:**
 
-### Making a Progressive Web App
+    ```bash
+    npm start  # or yarn start
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2.  **Open the application in your browser:**
 
-### Advanced Configuration
+    Navigate to `http://localhost:3000` (or the port specified by your development environment).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3.  **Register or Login:**
 
-### Deployment
+    *   If you are a new user, click on the "Register" link in the navigation bar and provide your username, email, and password.
+    *   If you already have an account, click on the "Login" link and enter your credentials.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+4.  **Manage Transactions:**
 
-### `npm run build` fails to minify
+    *   Once logged in, you will be redirected to the dashboard.
+    *   To add a new transaction, click on "Add Transaction" in the navigation bar.
+    *   Fill in the transaction description, select the transaction type (income or expense), and enter the amount.
+    *   Click the "Add" button to save the transaction.
+    *   To edit an existing transaction, click the edit icon (<FaRegEdit/>) in the Transaction History table.  This will navigate you to the `/edit/:id` route, handled by the `EditTransaction` component in `src/pages/EditTransaction.js`.
+    *   To delete a transaction, click the delete icon (<RiDeleteBin6Line/>) in the Transaction History table.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5.  **Filter and Search Transactions:**
+
+    *   Use the filter dropdown in `src/components/Filter.js` to view all transactions, income transactions, or expense transactions.
+    *   Use the search bar in `src/components/Search.js` to find transactions by description.
+
+6.  **Export Transactions:**
+
+    *   Click the "Export CSV" button to download your transaction data as a CSV file.
+
+7.  **Logout:**
+
+    *   Click the "Logout" button to sign out of your account.
+
+## API Documentation
+
+This project utilizes Firebase Firestore as its database. There's no separate backend API built from scratch. All data fetching and manipulation occur directly between the React application and Firebase.
+
+*   **Firebase Firestore:**  Data is stored and retrieved from the "transactions" collection. Each document in the collection represents a single transaction and includes fields like `datetime`, `text`, `amount`, `type`, and `uid` (user ID).  Refer to the `src/context/DataContext.js` file for how Firestore operations are handled, especially the `useEffect` hook.
+*   **Firebase Authentication:** Used for user registration, login, and logout.  Refer to `src/context/AuthContext.js`, `src/pages/Login.js`, and `src/pages/Register.js` for implementation details.
+
+## Contributing Guidelines
+
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1.  Fork the repository.
+2.  Create a new branch for your feature or bug fix.
+3.  Make your changes and commit them with clear, descriptive messages.
+4.  Test your changes thoroughly.
+5.  Submit a pull request.
+
+## License Information
+
+No license specified. All rights reserved.
+
+## Contact/Support Information
+
+For questions or support, please contact [sharfrasaqsan](https://github.com/sharfrasaqsan).
